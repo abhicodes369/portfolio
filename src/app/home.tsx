@@ -4,8 +4,13 @@ const Home = () => {
   return (
     <div className="min-h-screen  text-white p-8 px-40">
       <main className="mt-24">
-        <h2 className="font-serif text-4xl text-cyan-400 mb-4 ">-Hi,I am</h2>
-        <h1 className="text-8xl  font-serif text-cyan-400 mb-4">Abhiram</h1>
+        <h2 className="font-serif text-4xl text-cyan-400 mb-4 ">
+          {" "}
+          _ HELLO WORLD
+        </h2>
+        <h1 className="text-8xl  font-serif text-cyan-400 mb-4">
+          Hey, I'm Abhiram
+        </h1>
 
         <TypeAnimation
           sequence={[
