@@ -17,16 +17,10 @@ const TechGlobe: React.FC = () => {
 
     // Scene setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
     camera.position.z = 15;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
     mountRef.current.appendChild(renderer.domElement);
 
@@ -34,7 +28,7 @@ const TechGlobe: React.FC = () => {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.enableZoom = false; // Disable zooming for better control
+    controls.enableZoom = false;
 
     // Globe
     const globeGeometry = new THREE.SphereGeometry(4, 32, 32);
@@ -125,10 +119,7 @@ const TechGlobe: React.FC = () => {
       }
     };
 
-    const onMouseEnter = () => {
-      setIsInteracting(true);
-    };
-
+    const onMouseEnter = () => setIsInteracting(true);
     const onMouseLeave = () => {
       setIsInteracting(false);
       setHoveredTech(null);
@@ -154,7 +145,7 @@ const TechGlobe: React.FC = () => {
     };
     animate();
 
-    // Handle window resize
+    // Handle container resize
     const handleResize = () => {
       if (mountRef.current) {
         const { width, height } = mountRef.current.getBoundingClientRect();
@@ -163,6 +154,11 @@ const TechGlobe: React.FC = () => {
         renderer.setSize(width, height);
       }
     };
+
+    // Initial size setup
+    handleResize();
+
+    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
 
     // Cleanup
@@ -182,7 +178,7 @@ const TechGlobe: React.FC = () => {
       ref={mountRef}
       style={{
         width: "100%",
-        height: "80vh", // Adjust the height as needed
+        height: "100%",
         background: "transparent",
         cursor: isInteracting ? "grab" : "default",
       }}
@@ -198,6 +194,7 @@ const TechGlobe: React.FC = () => {
             padding: "10px",
             borderRadius: "5px",
             fontSize: "18px",
+            fontWeight: "bold",
             fontFamily: "Arial, sans-serif",
           }}
         >

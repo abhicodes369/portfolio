@@ -36,7 +36,6 @@ const About = () => {
                 pushing the boundaries of technology, let's connect!
               </p>
             </div>
-            {/* Additional content to ensure scrolling */}
             <div className="mt-16 space-y-6">
               <h3 className="text-2xl font-bold text-cyan-400">My Approach</h3>
               <p>

@@ -1,70 +1,40 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { FaHome, FaProjectDiagram, FaTools, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom"; // Assuming you're using React Router
 
-interface NavItemProps {
-  text: string;
-  path: string;
-}
-
-const navItems: NavItemProps[] = [
-  { text: "HOME", path: "/" },
-  { text: "PROJECTS", path: "/projects" },
-  { text: "SKILLS", path: "/skills" },
-  { text: "ABOUT", path: "/about" },
-];
-
-const Navbar: React.FC = () => {
-  const location = useLocation();
-
+const Navigation = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 h-16  z-10">
-      <div className="container mx-auto h-full flex justify-between items-center px-4">
-        <div className="text-green-500 font-bold text-xl">Abhiram</div>
-        <div className="flex items-center space-x-6">
-          <ul className="flex space-x-6">
-            {navItems.map((item) => (
-              <NavItem
-                key={item.text}
-                {...item}
-                currentPath={location.pathname}
-              />
-            ))}
-          </ul>
-          <a
-            href="https://github.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-500 hover:text-cyan-400 transition-colors duration-200"
-          ></a>
-        </div>
-      </div>
+    <nav className=" text-white py-4">
+      <ul className="flex justify-center space-x-6">
+        <li>
+          <Link to="/" className="flex items-center hover:text-cyan-400">
+            <FaHome className="mr-2" />
+            <span>Home</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/projects"
+            className="flex items-center hover:text-cyan-400"
+          >
+            <FaProjectDiagram className="mr-2" />
+            <span>Projects</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/skills" className="flex items-center hover:text-cyan-400">
+            <FaTools className="mr-2" />
+            <span>Skills</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className="flex items-center hover:text-cyan-400">
+            <FaUser className="mr-2" />
+            <span>About</span>
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 };
 
-interface NavItemPropsWithCurrentPath extends NavItemProps {
-  currentPath: string;
-}
-
-const NavItem: React.FC<NavItemPropsWithCurrentPath> = ({
-  text,
-  path,
-  currentPath,
-}) => {
-  const isActive = currentPath === path;
-
-  return (
-    <li>
-      <Link
-        to={path}
-        className={`text-green-500 hover:text-cyan-400 transition-colors duration-200 ${
-          isActive ? "text-cyan-400" : ""
-        }`}
-      >
-        {text}
-      </Link>
-    </li>
-  );
-};
-
-export default Navbar;
+export default Navigation;
