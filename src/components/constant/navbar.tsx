@@ -1,5 +1,5 @@
 import { FaHome, FaProjectDiagram, FaTools, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom"; // Assuming you're using React Router
+import { Link } from "react-router-dom"; 
 
 const Navigation = () => {
   return (
